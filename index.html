@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Me - Charlie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --accent: #38bdf8;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 55%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .page {
+      max-width: 900px;
+      width: 100%;
+      background: linear-gradient(135deg, #020617 0%, #0b1120 40%, #020617 100%);
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      box-shadow:
+        0 40px 80px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+    }
+
+    @media (max-width: 768px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .left {
+      padding: 2.5rem 2.5rem 2rem;
+    }
+
+    .right {
+      padding: 2.5rem 2.5rem 2rem;
+      background: radial-gradient(circle at top left, #0f172a 0, #020617 60%);
+      border-left: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 32rem;
+      line-height: 1.6;
+      margin-bottom: 1.75rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .pill {
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .pill-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.7);
+    }
+
+    .section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .section {
+      margin-bottom: 1.75rem;
+    }
+
+    .section p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-main);
+    }
+
+    .section p span.muted {
+      color: var(--text-muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.85);
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 0.9rem 1rem;
+    }
+
+    .card-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .card-value {
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    .card-value span {
+      color: var(--accent);
+    }
+
+    .list {
+      list-style: none;
+      margin-top: 0.4rem;
+    }
+
+    .list li {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .list-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.9);
+      margin-top: 0.35rem;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .socials {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .social-link {
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      transition: all 0.18s ease;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.45);
+    }
+
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 999px;
+      border: 2px solid rgba(56, 189, 248, 0.7);
+      box-shadow: 0 0 24px rgba(56, 189, 248, 0.6);
+      background: radial-gradient(circle at 30% 0, #38bdf8 0, #0f172a 40%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #e5e7eb;
+      margin-bottom: 1.25rem;
+    }
+
+    .location {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .highlight {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-main);
+      margin-bottom: 1.25rem;
+    }
+
+    .highlight span {
+      color: var(--accent);
+    }
+
+    .timeline {
+      border-left: 1px solid rgba(148, 163, 184, 0.35);
+      margin-top: 0.5rem;
+      padding-left: 0.9rem;
+    }
+
+    .timeline-item {
+      margin-bottom: 0.9rem;
+      position: relative;
+    }
+
+    .timeline-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.9);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.7);
+      position: absolute;
+      left: -1.35rem;
+      top: 0.15rem;
+    }
+
+    .timeline-title {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="left">
+      <div class="tag">
+        <span class="tag-dot"></span>
+        ABOUT ME
+      </div>
+
+      <h1>Hey, I’m <span>Charlie</span>.</h1>
+
+      <p class="subtitle">
+        I’m a curious, people‑oriented human who loves building things—ideas, projects, and relationships.
+        I care a lot about honest conversations, thoughtful work, and finding meaning in the everyday.
+      </p>
+
+      <div class="pill-row">
+        <div class="pill">
+          <span class="pill-icon"></span>
+          Builder at heart
+        </div>
+        <div class="pill">
+          <span class="pill-icon"></span>
+          Lifelong learner
+        </div>
+        <div class="pill">
+          <span class="pill-icon"></span>
+          Conversation enthusiast
+        </div>
+        <div class="pill">
+          <span class="pill-icon"></span>
+          Coffee + deep talks
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Who I am</div>
+        <p>
+          I’m someone who likes to get past small talk and into the real stuff—what people care about,
+          what keeps them up at night, and what they’re quietly excited about.
+          I’m drawn to projects where there’s a mix of creativity, systems thinking, and collaboration.
+        </p>
+      </div>
+
+      <div class="section">
+        <div class="section-title">What I’m into right now</div>
+        <div class="grid">
+          <div class="card">
+            <div class="card-label">Work & craft</div>
+            <div class="card-value">
+              Exploring how to do <span>meaningful, focused work</span> without burning out.
+            </div>
+            <ul class="list">
+              <li>
+                <span class="list-bullet"></span>
+                Designing workflows that feel human, not robotic
+              </li>
+              <li>
+                <span class="list-bullet"></span>
+                Learning better ways to communicate hard ideas simply
+              </li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-label">Curiosity</div>
+            <div class="card-value">
+              Following threads around <span>psychology, technology, and creativity</span>.
+            </div>
+            <ul class="list">
+              <li>
+                <span class="list-bullet"></span>
+                How people make decisions when things are uncertain
+              </li>
+              <li>
+                <span class="list-bullet"></span>
+                How tools can support—not replace—real human connection
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">A few things that matter to me</div>
+        <ul class="list">
+          <li>
+            <span class="list-bullet"></span>
+            <strong>Honesty:</strong>&nbsp;Saying the real thing, even when it’s a little uncomfortable.
+          </li>
+          <li>
+            <span class="list-bullet"></span>
+            <strong>Depth over noise:</strong>&nbsp;Fewer, better conversations. Fewer, better projects.
+          </li>
+          <li>
+            <span class="list-bullet"></span>
+            <strong>Playfulness:</strong>&nbsp;Taking the work seriously without taking myself too seriously.
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer">
+        <div>Last updated: whenever I grow a little.</div>
+        <div class="socials">
+          <a class="social-link" href="#" aria-label="Email">Email</a>
+          <a class="social-link" href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a class="social-link" href="#" aria-label="GitHub">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="right">
+      <div class="avatar">C</div>
+
+      <div class="location">
+        Based in <strong>Cincinnati, Ohio</strong>—usually with a notebook, a good playlist,
+        and a question I’m trying to untangle.
+      </div>
+
+      <div class="highlight">
+        I’m most alive when I’m <span>learning something new with other people</span>—whether that’s
+        building a project, unpacking a tough topic, or just trading stories over coffee.
+      </div>
+
+      <div class="section">
+        <div class="section-title">If you really want to know me</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-title">I chase questions more than answers.</div>
+            <div class="timeline-meta">Curiosity as a compass</div>
+            <div class="timeline-desc">
+              I like asking “why does this actually matter?” and “what’s underneath that?”
+              It’s how I learn, and how I connect.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-title">I care about how things feel, not just how they work.</div>
+            <div class="timeline-meta">Designing for humans</div>
+            <div class="timeline-desc">
+              Whether it’s a workflow, a product, or a conversation, I think about the emotional
+              experience as much as the logic.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-title">I believe small, consistent steps change everything.</div>
+            <div class="timeline-meta">Quiet progress</div>
+            <div class="timeline-desc">
+              I’m more interested in sustainable habits than dramatic overnight changes.
+              Slow growth, but real growth.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Outside of work</div>
+        <ul class="list">
+          <li>
+            <span class="list-bullet"></span>
+            Long walks where I accidentally solve problems I wasn’t planning to think about
+          </li>
+          <li>
+            <span class="list-bullet"></span>
+            Music as a mood‑shifter—playlists for focus, reflection, and joy
+          </li>
+          <li>
+            <span class="list-bullet"></span>
+            Collecting questions I don’t have answers to yet
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
